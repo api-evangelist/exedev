@@ -1,0 +1,49 @@
+generated: '2026-07-19'
+method: searched
+source: https://exe.dev/docs/https-api.md
+docs: https://exe.dev/docs/https-api.md
+summary:
+  types: [ssh-key, http-bearer, openIdConnect]
+  api_key_in: [header]
+  primary: SSH public-key authentication
+schemes:
+- name: ssh-public-key
+  type: ssh
+  scheme: publickey
+  description: >-
+    Primary auth for VM management. Your SSH public key identifies your exe.dev
+    account. `ssh exe.dev <command>` (the lobby REPL) and `ssh <vm>.exe.xyz` (direct
+    VM shell) both authenticate with your registered SSH key.
+  docs: https://exe.dev/docs/cli-ssh-key.md
+- name: https-api-bearer
+  type: http
+  scheme: bearer
+  bearerFormat: exe1 signed token
+  description: >-
+    Bearer token for the HTTPS API (POST https://exe.dev/exec). Tokens are prefixed
+    `exe1.` and are signed JSON carrying exp/nbf/cmds/ctx claims. Generated with
+    `ssh exe.dev ssh-key generate-api-key --exp=30d`, or created locally by signing
+    with your SSH key.
+  header: 'Authorization: Bearer [example key]'
+  token_claims:
+    exp: Unix expiry timestamp (strongly recommended)
+    nbf: Unix not-before timestamp
+    cmds: allow-list of permitted commands (subcommands must be listed explicitly)
+    ctx: custom JSON context data
+  default_allowed_cmds: [help, ls, new, whoami, "ssh-key list", "share show", exe0-to-exe1, team, "team members"]
+  constraints:
+    max_token_size: 8KB
+    timestamp_range: 2000-01-01 to 2100-01-01
+  docs: https://exe.dev/docs/https-api-local-key.md
+- name: openid-connect
+  type: openIdConnect
+  openIdConnectUrl: https://exe.dev/.well-known/openid-configuration
+  description: >-
+    exe.dev exposes an OIDC discovery document (issuer https://exe.dev, RS256,
+    id_token response type, jwks at https://exe.dev/.oidc/jwks.json). Team SSO can
+    federate via Google OAuth or OIDC.
+  docs: https://exe.dev/docs/teams/sso.md
+notes: >-
+  "Login with exe" is a separate proxy-layer auth for apps hosted on exe.dev VMs — it
+  injects X-ExeDev-UserID and X-ExeDev-Email headers into authenticated requests rather
+  than issuing OAuth tokens (see https://exe.dev/docs/login-with-exe.md).
