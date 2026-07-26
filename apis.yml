@@ -1,22 +1,62 @@
 aid: exedev
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/exedev.png
 name: exe.dev
-description: 'exe.dev is a company surfaced as a portfolio company of amplify-partners and added to the
-  API Evangelist network as a stub for enrichment. Sector: developer-tools. This profile is a lead awaiting
-  the enrichment pipeline.'
+description: >-
+  exe.dev is a cloud computing platform from Bold Software that provisions Linux VMs
+  with persistent disks, instant HTTPS, and built-in authentication — all managed over
+  SSH ("just use ssh"). It offers disposable Sandboxes for running AI-generated code,
+  persistent VPS-style VMs, and Devbox cloud development environments, each reachable at
+  https://<vm>.exe.xyz with automatic TLS. A companion HTTPS API (POST /exec) runs the
+  same command surface with exe1. bearer tokens, and Shelley — a first-party, web-based
+  coding agent — runs inside the VMs. exe.dev raised a $35M Series A and is backed by
+  Amplify Partners. This profile was enriched by the API Evangelist pipeline from the
+  provider's public docs, llms.txt, GitHub org (boldsoftware), and well-known surface.
 url: https://raw.githubusercontent.com/api-evangelist/exedev/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
 x-backed-by:
 - amplify-partners
-x-tier: stub
-x-tier-reason: portfolio-lead
+x-tier: enriched
+x-tier-reason: portfolio-lead-enriched
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-19'
 tags:
 - Company
 - Developer Tools
-apis: []
+- Cloud Computing
+- Virtual Machines
+- Sandbox
+- AI Agents
+- Infrastructure
+- SSH
+apis:
+- name: exe.dev HTTPS API
+  description: >-
+    Programmatic access to the exe.dev command surface. POST the command exactly as typed
+    in the ssh exe.dev REPL to https://exe.dev/exec with an exe1. bearer token; supported
+    commands return JSON via --json.
+  humanURL: https://exe.dev/docs/https-api.md
+  baseURL: https://exe.dev
+  properties:
+  - type: Documentation
+    url: https://exe.dev/docs
+  - type: APIReference
+    url: https://exe.dev/docs/https-api.md
+  - type: Authentication
+    url: authentication/exedev-authentication.yml
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
@@ -25,3 +65,62 @@ maintainers:
 common:
 - type: Website
   url: https://exe.dev
+- type: DeveloperPortal
+  url: https://exe.dev/docs
+- type: Documentation
+  url: https://exe.dev/docs
+- type: APIReference
+  url: https://exe.dev/docs/https-api.md
+- type: GettingStarted
+  url: https://exe.dev/docs/what-is-exe.md
+- type: Pricing
+  url: https://exe.dev/pricing
+- type: Blog
+  url: https://blog.exe.dev/
+- type: GitHubOrganization
+  url: https://github.com/boldsoftware
+- type: Support
+  url: https://exe.dev/docs/community.md
+- type: TermsOfService
+  url: https://exe.dev/docs/terms-of-service.md
+- type: PrivacyPolicy
+  url: https://exe.dev/docs/privacy-notice.md
+- type: LLMsTxt
+  url: llms/exedev-llms.txt
+- type: WellKnown
+  url: well-known/exedev-well-known.yml
+- type: Authentication
+  url: authentication/exedev-authentication.yml
+- type: VulnerabilityDisclosure
+  url: security/exedev-vulnerability-disclosure.yml
+- type: Security
+  url: security/exedev-vulnerability-disclosure.yml
+- type: DomainSecurity
+  url: security/exedev-domain-security.yml
+- type: Conventions
+  url: conventions/exedev-conventions.yml
+- type: ErrorCatalog
+  url: errors/exedev-problem-types.yml
+- type: Lifecycle
+  url: lifecycle/exedev-lifecycle.yml
+- type: ChangeLog
+  url: changelog/exedev-changelog.yml
+- type: CLI
+  url: cli/exedev-cli.yml
+- type: Packages
+  url: packages/exedev-packages.yml
+- type: MCPServer
+  url: mcp/exedev-mcp.yml
+- type: Conformance
+  url: conformance/exedev-conformance.yml
+- type: DataModel
+  url: data-model/exedev-data-model.yml
+- type: Components
+  url: components/exedev-components.yml
+- type: AgentSkill
+  url: skills/exedev-using-exe-dev.md
+x-enrichment:
+  date: '2026-07-19'
+  status: backfilled
+  pass: local-v1
+  note: backfilled from .gitignore signal + verified work evidence

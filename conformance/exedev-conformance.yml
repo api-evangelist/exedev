@@ -1,0 +1,22 @@
+generated: '2026-07-19'
+method: derived
+source: https://exe.dev/.well-known/openid-configuration, https://exe.dev/docs/https-api.md
+standards:
+- id: oidc-discovery
+  conforms: true
+  evidence: /.well-known/openid-configuration (200) — issuer https://exe.dev, RS256, jwks_uri published
+- id: oauth2
+  conforms: false
+  evidence: id_token-only response type; no authorization/token endpoints or oauth2 scopes advertised
+- id: rfc9116-security-txt
+  conforms: false
+  evidence: /.well-known/security.txt returns 404 (contact published on /security page instead)
+- id: rfc9457-problem-details
+  conforms: false
+  evidence: HTTPS API signals failures via HTTP status codes, not application/problem+json
+- id: http-bearer-auth
+  conforms: true
+  evidence: Authorization Bearer exe1. tokens on POST /exec
+- id: hsts
+  conforms: true
+  evidence: exe.dev serves HSTS with max-age 63072000 (see security/exedev-domain-security.yml)

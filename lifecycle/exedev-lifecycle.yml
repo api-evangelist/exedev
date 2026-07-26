@@ -1,0 +1,21 @@
+generated: '2026-07-19'
+method: searched
+source: https://exe.dev/docs/release-notes.md
+versioning:
+  scheme: token/protocol prefix
+  current: exe1
+  migration: exe0-to-exe1 command migrates legacy tokens
+  note: No public dated API-version train; changes are announced via release notes.
+release_notes: https://exe.dev/docs/release-notes.md
+deprecation:
+  policy_url: null
+  sunset_header: false
+  note: No formal deprecation policy or RFC 8594 Sunset/Deprecation header support documented.
+status_page: null
+status_note: >-
+  No dedicated status page found. Operational and security incidents are posted to the
+  security bulletin feed at https://exe.dev/security.
+sla:
+  url: null
+  note: No published SLA/uptime target found (Personal/Team plans).
+deprecated_operations: []

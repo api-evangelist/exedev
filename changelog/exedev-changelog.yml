@@ -1,0 +1,17 @@
+generated: '2026-07-19'
+method: searched
+source: https://exe.dev/docs/release-notes.md
+scheme: dated release notes (undated version numbers)
+current_version: exe1
+entries:
+- date: '2026-05'
+  breaking: false
+  highlights:
+  - Reflection integration — a VM can discover what it can connect to; on by default for new users.
+  - Custom-domain allow-listing — domains now require approval via the `domain` command before forwarding traffic.
+  - Bigger resizes — `resize` gained `--cpu` and `--memory` flags for larger plan tiers.
+- date: '2026-02-25'
+  breaking: false
+  security: true
+  highlights:
+  - "Security fix: VM sharing previously exposed all HTTP ports to recipients instead of only specified ports (medium severity). Posted to the security bulletin feed."

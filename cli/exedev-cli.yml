@@ -1,0 +1,49 @@
+generated: '2026-07-19'
+method: searched
+source: https://exe.dev/docs/cli-help.md
+invocation: ssh exe.dev <command>   # the exe.dev "lobby" REPL — no separate binary to install
+help: ssh exe.dev help ; ssh exe.dev help <command>
+json_mode: most commands accept --json for machine-readable output
+groups:
+- name: VM lifecycle
+  commands:
+  - {name: ls, desc: List your VMs}
+  - {name: new, desc: Create a new VM}
+  - {name: rm, desc: Delete a VM}
+  - {name: restart, desc: Restart a VM}
+  - {name: rename, desc: Rename a VM}
+  - {name: cp, desc: Copy an existing VM}
+  - {name: resize, desc: "Resize a VM's resources (memory, CPU, disk); --cpu/--memory flags"}
+  - {name: tag, desc: Add or remove tags on a VM}
+  - {name: comment, desc: Set or clear a short comment on a VM}
+  - {name: stat, desc: Show CPU, memory, disk, and IO metrics for a VM}
+- name: Access & networking
+  commands:
+  - {name: ssh, desc: SSH into a VM}
+  - {name: domain, desc: Register custom domains for your VMs}
+  - {name: share, desc: Share HTTPS VM access with others}
+  - {name: grant-support-root, desc: Allow exe.dev support to log in to a VM}
+  - {name: browser, desc: Generate a magic link to log in to the website}
+- name: Account & config
+  commands:
+  - {name: whoami, desc: Show user information (email, keys, etc)}
+  - {name: ssh-key, desc: Manage SSH keys and generate HTTPS API tokens}
+  - {name: set-region, desc: Set your preferred region for new VMs}
+  - {name: integrations, desc: Manage integrations}
+- name: Team & billing
+  commands:
+  - {name: team, desc: View and manage your team}
+  - {name: billing, desc: View and manage your billing}
+  - {name: invite, desc: Manage your invite link and rewards}
+- name: Agent
+  commands:
+  - {name: shelley, desc: Manage the Shelley coding agent on VMs}
+- name: Misc
+  commands:
+  - {name: help, desc: Show help information}
+  - {name: doc, desc: Browse documentation}
+  - {name: exit, desc: Exit}
+key_flows:
+- Create and connect: ssh exe.dev new --json ; ssh <vm>.exe.xyz
+- Mint an API token: ssh exe.dev ssh-key generate-api-key --exp=30d
+- Publish: every VM auto-serves https://<vm>.exe.xyz/ with TLS

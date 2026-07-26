@@ -1,0 +1,40 @@
+generated: '2026-07-19'
+method: searched
+source: https://exe.dev/docs/https-api.md
+authentication:
+  style: SSH public key (VM management) + bearer `exe1.` token (HTTPS API)
+  see: authentication/exedev-authentication.yml
+transport:
+  https_api:
+    endpoint: POST https://exe.dev/exec
+    body: the command exactly as typed in the ssh exe.dev REPL
+    output: command output; JSON mode via the --json flag on supported commands
+  ssh_lobby: ssh exe.dev <command>  # VM lifecycle/config REPL
+  ssh_vm: ssh <vm>.exe.xyz          # full shell/scp/sftp/port-forward
+command_scoping:
+  mechanism: token `cmds` claim
+  description: >-
+    HTTPS API bearer tokens carry a `cmds` allow-list; subcommands must be listed
+    explicitly. This is capability-scoping at the token level rather than OAuth scopes.
+idempotency:
+  supported: false
+  note: No idempotency-key contract is documented for the /exec HTTPS API.
+pagination:
+  supported: unknown
+  note: List commands (`ls --json`) return arrays; no documented cursor/offset pagination.
+rate_limiting:
+  signal: HTTP 429
+  scope: per SSH key
+versioning:
+  scheme: token/protocol prefix
+  note: API tokens are versioned by the `exe1.` prefix; there is an `exe0-to-exe1` migration command.
+limits:
+  request_body_max: 64KB
+  token_max: 8KB
+  timeout_seconds: 30
+error_envelope:
+  style: HTTP status codes (400/401/403/404/405/413/422/429/500/504)
+  see: errors/exedev-problem-types.yml
+regions:
+  see: data-model/exedev-data-model.yml
+  note: 9 regions (PDX/LAX/NYC/DAL/FRA/TYO/SYD/SGP/LON); set with `set-region`.

@@ -1,0 +1,24 @@
+generated: '2026-07-19'
+method: derived
+status: candidate
+source: cli/exedev-cli.yml, https://exe.dev/docs/https-api.md
+note: >-
+  No official hosted/remote MCP server was found for exe.dev. This is a CANDIDATE tool
+  list derived from the documented CLI/HTTPS-API command surface (each management command
+  maps to a candidate tool, executable via POST https://exe.dev/exec with an exe1. bearer
+  token). exe.dev instead ships a first-party Agent Skill (skills/exedev-using-exe-dev.md).
+server:
+  name: exedev
+  transport: http
+  url: null
+tools:
+- {name: list_vms, description: List your VMs, source_operation: "ssh exe.dev ls --json"}
+- {name: create_vm, description: Create a new VM, source_operation: "ssh exe.dev new --json"}
+- {name: delete_vm, description: Delete a VM, source_operation: "ssh exe.dev rm <vm>"}
+- {name: restart_vm, description: Restart a VM, source_operation: "ssh exe.dev restart <vm>"}
+- {name: resize_vm, description: Resize a VM's CPU/memory/disk, source_operation: "ssh exe.dev resize <vm>"}
+- {name: share_vm, description: Share HTTPS VM access, source_operation: "ssh exe.dev share"}
+- {name: register_domain, description: Register a custom domain for a VM, source_operation: "ssh exe.dev domain"}
+- {name: whoami, description: Show account info, source_operation: "ssh exe.dev whoami"}
+- {name: manage_integrations, description: Manage integrations, source_operation: "ssh exe.dev integrations"}
+- {name: vm_stats, description: Show CPU/memory/disk/IO metrics, source_operation: "ssh exe.dev stat <vm>"}

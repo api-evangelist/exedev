@@ -1,0 +1,38 @@
+generated: '2026-07-19'
+method: searched
+source: https://exe.dev/docs/https-api.md
+format: http-status
+envelope: >-
+  The HTTPS API (POST https://exe.dev/exec) returns the command's output in the body;
+  failures are signaled by HTTP status code. Command exit status maps to 422.
+problems:
+- status: 400
+  title: Empty or malformed request
+  remediation: Send a non-empty POST body containing the command exactly as typed in the REPL.
+- status: 401
+  title: Invalid or expired token
+  remediation: Regenerate the bearer token (check exp/nbf) with `ssh exe.dev ssh-key generate-api-key`.
+- status: 403
+  title: Command not permitted
+  remediation: The token's `cmds` allow-list does not include this command (or its subcommand). Mint a token whose cmds list the exact command.
+- status: 404
+  title: Unknown command
+  remediation: Use `ssh exe.dev help` to list valid commands.
+- status: 405
+  title: Method not allowed
+  remediation: The /exec endpoint accepts POST only.
+- status: 413
+  title: Request too large
+  remediation: Request body exceeds the 64KB maximum; reduce payload.
+- status: 422
+  title: Command failed (non-zero exit)
+  remediation: The command executed but exited non-zero; inspect the output body.
+- status: 429
+  title: Rate limited
+  remediation: Rate limits are enforced per SSH key. Back off and retry.
+- status: 500
+  title: Server error
+  remediation: Transient server-side error; retry.
+- status: 504
+  title: Timeout
+  remediation: Commands time out after 30 seconds.

@@ -1,0 +1,39 @@
+generated: '2026-07-19'
+method: searched
+source: https://exe.dev/docs/api.md, https://exe.dev/docs/regions.md, https://exe.dev/docs/teams/overview.md
+note: >-
+  Derived from the documented `ssh exe.dev ls --json` VM object and the docs. exe.dev
+  publishes no OpenAPI, so entities/fields are captured from documented JSON shapes.
+entities:
+- name: VM
+  description: A persistent Linux virtual machine with disk, HTTPS endpoint, and SSH access.
+  fields: [vm_name, https_url, ssh_dest, region, region_display, status]
+  identifier: vm_name
+  endpoint: https://<vm>.exe.xyz/
+- name: Team
+  description: An organization sharing VM management, SSO, and roles.
+  fields: [members, roles, sharing_controls]
+- name: Region
+  description: A geographic location a VM runs in.
+  identifier: code
+  values:
+  - {code: PDX, display: "Oregon, USA", note: not accepting new accounts}
+  - {code: LAX, display: "Los Angeles, USA"}
+  - {code: NYC, display: "New York, USA"}
+  - {code: DAL, display: "Dallas, USA"}
+  - {code: FRA, display: "Frankfurt, Germany"}
+  - {code: TYO, display: "Tokyo, Japan"}
+  - {code: SYD, display: "Sydney, Australia"}
+  - {code: SGP, display: "Singapore"}
+  - {code: LON, display: "London, UK"}
+- name: Integration
+  description: An external tool/service a VM connects to (GitHub, LLM, AWS/GCP WIF, HTTP proxy, Reflection).
+  fields: [type, attachment]
+- name: APIToken
+  description: A signed exe1. bearer token for the HTTPS API.
+  fields: [exp, nbf, cmds, ctx]
+relationships:
+- {from: Team, to: VM, kind: has_many, via: team ownership}
+- {from: VM, to: Region, kind: belongs_to, via: region}
+- {from: VM, to: Integration, kind: has_many, via: attach/tags/auto-attach}
+- {from: APIToken, to: VM, kind: scopes_to, via: cmds/ctx}

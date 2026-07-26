@@ -1,0 +1,24 @@
+generated: '2026-07-19'
+method: searched
+source: https://github.com/boldsoftware/homebrew-tap
+note: >-
+  exe.dev VM management has no client SDK by design — "just use ssh" (ssh exe.dev
+  <command>, or the HTTPS /exec endpoint). The one first-party installable binary is
+  Shelley, exe.dev's coding agent, distributed via the boldsoftware Homebrew tap and
+  GitHub releases (darwin/linux, amd64/arm64).
+packages:
+- language: go
+  registry: homebrew
+  name: shelley
+  tap: boldsoftware/tap
+  url: https://github.com/boldsoftware/shelley
+  install: brew install boldsoftware/tap/shelley
+  description: Shelley — exe.dev's mobile-friendly, web-based, multi-modal coding agent (Apache-2.0).
+  official: true
+- language: binary
+  registry: github-releases
+  name: shelley
+  url: https://github.com/boldsoftware/shelley/releases
+  install: download shelley_{darwin,linux}_{amd64,arm64} from GitHub releases
+  description: Prebuilt Shelley binaries for macOS and Linux (amd64/arm64).
+  official: true

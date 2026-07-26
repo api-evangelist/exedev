@@ -1,0 +1,23 @@
+generated: '2026-07-19'
+method: searched
+source: https://exe.dev/docs/repo-buttons.md, https://exe.dev/docs/login-with-exe.md, https://exe.dev/docs/suggest-links.md
+note: >-
+  exe.dev exposes hosted/embeddable surfaces rather than a client JS component library.
+components:
+- family: Repo buttons
+  kind: embeddable-badge
+  items:
+  - {name: Deploy on exe.dev, desc: README badge that provisions/deploys a repo on an exe.dev VM}
+  - {name: Build with Shelley, desc: README badge that opens the repo with the Shelley coding agent}
+  docs: https://exe.dev/docs/repo-buttons.md
+- family: Login with exe
+  kind: hosted-auth-surface
+  items:
+  - {name: Login redirect, desc: "https://<vm>.exe.xyz/__exe.dev/login?redirect={path} — proxy-layer login that injects X-ExeDev-UserID / X-ExeDev-Email headers"}
+  - {name: Logout, desc: "POST https://<vm>.exe.xyz/__exe.dev/logout clears auth cookies"}
+  docs: https://exe.dev/docs/login-with-exe.md
+- family: Suggest links
+  kind: hosted-command-runner
+  items:
+  - {name: Suggest, desc: "Pre-filled command runners at https://exe.dev/suggest"}
+  docs: https://exe.dev/docs/suggest-links.md
