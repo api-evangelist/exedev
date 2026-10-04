@@ -61,7 +61,6 @@ apis:
     in the ssh exe.dev REPL to https://exe.dev/exec with an exe1. bearer token; supported
     commands return JSON via --json.
   humanURL: https://exe.dev/docs/https-api.md
-  baseURL: https://exe.dev
   properties:
   - type: Documentation
     url: https://exe.dev/docs
