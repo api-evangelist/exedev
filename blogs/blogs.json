@@ -2,6 +2,20 @@
   "repo": "exedev",
   "feeds": [
     {
+      "source": "https://blog.exe.dev/atom.xml",
+      "feed_url": "https://blog.exe.dev/atom.xml",
+      "title": "",
+      "saved": 3,
+      "method": "feed"
+    },
+    {
+      "source": "https://blog.exe.dev/",
+      "feed_url": "https://blog.exe.dev/atom.xml",
+      "title": "",
+      "saved": 0,
+      "method": "discovered"
+    },
+    {
       "source": "https://exe.dev/pricing",
       "feed_url": "https://exe.dev/pricing",
       "title": "",
@@ -9,6 +23,6 @@
       "method": "none"
     }
   ],
-  "post_count": 0,
-  "fetched": "2026-10-03T12:30:02Z"
+  "post_count": 3,
+  "fetched": "2026-10-10T13:15:00Z"
 }
